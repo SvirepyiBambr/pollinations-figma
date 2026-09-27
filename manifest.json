@@ -6,6 +6,6 @@
     "ui": "ui.html",
     "editorType": ["figma", "figjam"],
     "networkAccess": {
-        "allowedDomains": ["https://gen.pollinations.ai", "https://image.pollinations.ai"]
+        "allowedDomains": ["https://gen.pollinations.ai"]
     }
 }

@@ -38,8 +38,8 @@ key's own Pollen (BYOP).
 - `npx tsc --noEmit` is clean against the official
   `@figma/plugin-typings` (strict mode).
 - The bundle is built with esbuild (`code.js`, ~2 KB).
-- Network access is explicitly limited to `gen.pollinations.ai` /
-  `image.pollinations.ai` in `manifest.json`.
+- Network access is explicitly limited to `gen.pollinations.ai` in
+  `manifest.json`.
 - The same images endpoint was verified live with a real API key
   (see the app-submission issue for this plugin).
 
