@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body { font-family: Inter, sans-serif; margin: 12px; }
+    input, button { width: 100%; box-sizing: border-box; margin-bottom: 8px; padding: 6px; }
+    button { cursor: pointer; }
+    #status { font-size: 11px; color: #888; min-height: 16px; }
+    .error { color: #d33; }
+</style>
+</head>
+<body>
+    <input id="apiKey" type="password" placeholder="API key (enter.pollinations.ai/keys)" />
+    <input id="prompt" placeholder="Describe the image…" />
+    <input id="model" placeholder="Model (default: flux)" value="flux" />
+    <select id="size">
+        <option value="512x512">512 × 512</option>
+        <option value="1024x1024" selected>1024 × 1024</option>
+        <option value="1024x1792">1024 × 1792</option>
+        <option value="1792x1024">1792 × 1024</option>
+    </select>
+    <button id="generate" class="primary">Generate & fill selection</button>
+    <div id="status"></div>
+    <script>
+        const status = document.getElementById("status");
+        document.getElementById("generate").addEventListener("click", () => {
+            const prompt = document.getElementById("prompt").value.trim();
+            if (!prompt) return;
+            status.className = "";
+            status.textContent = "Generating…";
+            parent.postMessage({
+                pluginMessage: {
+                    type: "generate",
+                    prompt,
+                    model: document.getElementById("model").value.trim() || "flux",
+                    size: document.getElementById("size").value,
+                    apiKey: document.getElementById("apiKey").value.trim(),
+                },
+            }, "*");
+        });
+        onmessage = (event) => {
+            const msg = event.data.pluginMessage;
+            if (!msg) return;
+            status.className = msg.type === "error" ? "error" : "";
+            status.textContent = msg.message;
+        };
+    </script>
+</body>
+</html>

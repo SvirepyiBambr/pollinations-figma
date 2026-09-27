@@ -1,0 +1,21 @@
+name: CI
+
+# Type-checks the plugin against the official Figma typings and bundles
+# it with esbuild (code.js + manifest.json + ui.html must all exist).
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "lts/*"
+      - run: npm install
+      - run: npx tsc --noEmit
+      - run: npm run build
+      - run: test -f code.js && test -f manifest.json && test -f ui.html && echo "build OK"

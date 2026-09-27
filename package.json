@@ -1,0 +1,14 @@
+{
+    "name": "pollinations-figma",
+    "version": "1.0.0",
+    "description": "Generate and edit images with Pollinations inside Figma (BYOP).",
+    "license": "MIT",
+    "scripts": {
+        "build": "esbuild code.ts --bundle --outfile=code.js --target=es2017"
+    },
+    "devDependencies": {
+        "@figma/plugin-typings": "^1.115.0",
+        "esbuild": "^0.27.0",
+        "typescript": "^5.9.0"
+    }
+}
