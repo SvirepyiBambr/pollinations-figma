@@ -10,6 +10,11 @@ key's own Pollen (BYOP).
   (default `flux`) and size; the image is applied as an image fill to
   every selected frame/shape, or placed as a new rectangle if nothing is
   selected.
+- **Edit selected image** — select a shape that already has an image
+  fill, type an edit prompt ("make it sunset", "remove the car"), click
+  **Edit selected image**: the plugin extracts the current fill image,
+  sends it to `POST /v1/images/edits` and applies the edited result back
+  on the same selection.
 - Any model from the live list <https://gen.pollinations.ai/image/models>.
 - API key input in the plugin UI (keys at
   <https://enter.pollinations.ai/keys>); editing with image models works

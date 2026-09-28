@@ -20,6 +20,7 @@
         <option value="1792x1024">1792 × 1024</option>
     </select>
     <button id="generate" class="primary">Generate & fill selection</button>
+    <button id="edit">Edit selected image with this prompt</button>
     <div id="status"></div>
     <script>
         const status = document.getElementById("status");
@@ -31,6 +32,21 @@
             parent.postMessage({
                 pluginMessage: {
                     type: "generate",
+                    prompt,
+                    model: document.getElementById("model").value.trim() || "flux",
+                    size: document.getElementById("size").value,
+                    apiKey: document.getElementById("apiKey").value.trim(),
+                },
+            }, "*");
+        });
+        document.getElementById("edit").addEventListener("click", () => {
+            const prompt = document.getElementById("prompt").value.trim();
+            if (!prompt) return;
+            status.className = "";
+            status.textContent = "Editing…";
+            parent.postMessage({
+                pluginMessage: {
+                    type: "edit",
                     prompt,
                     model: document.getElementById("model").value.trim() || "flux",
                     size: document.getElementById("size").value,
