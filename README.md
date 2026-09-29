@@ -51,3 +51,9 @@ key's own Pollen (BYOP).
 ## License
 
 MIT
+
+## Live demo
+
+![Live API check](demo/live-run.png)
+
+Real run (2026-09-29) of the plugin's API calls: `POST /v1/images/generations` (generate) and `POST /v1/images/edits` (edit selection) against `gen.pollinations.ai` — HTTP 200, result applied back to the selection.
