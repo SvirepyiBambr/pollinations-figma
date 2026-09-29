@@ -35,7 +35,7 @@
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ***}`
+        Authorization: `Bearer ${apiKey}`
       },
       body: JSON.stringify({ model, prompt, size })
     });
